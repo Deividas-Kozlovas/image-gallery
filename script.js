@@ -26,9 +26,11 @@ import { imagesList } from "./imagesList.js";
     }
     return array;
   }
+
   function addImages(imagesList) {
     clearGallery();
     const gallery = document.querySelector(".gallery");
+
     imagesList.forEach((img) => {
       const imageDiv = document.createElement("div");
       imageDiv.classList.add("gallery__box");
@@ -42,6 +44,29 @@ import { imagesList } from "./imagesList.js";
       gallery.appendChild(imageDiv);
     });
 
+    const images = document.querySelectorAll(".gallery__image");
+
+    images.forEach((image) => {
+      image.addEventListener("click", (e) => {
+        const galleryBox = e.target.closest(".gallery__box");
+        if (galleryBox) {
+          toggleSize(galleryBox);
+        }
+      });
+    });
+
     mixImagesBtn.style.display = "block";
+  }
+
+  function toggleSize(galleryBox) {
+    if (galleryBox.classList.contains("enlarged")) {
+      galleryBox.style.width = "";
+      galleryBox.style.height = "";
+      galleryBox.classList.remove("enlarged");
+    } else {
+      galleryBox.style.width = galleryBox.offsetWidth * 2 + "px";
+      galleryBox.style.height = galleryBox.offsetHeight * 2 + "px";
+      galleryBox.classList.add("enlarged");
+    }
   }
 })();
