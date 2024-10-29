@@ -12,6 +12,7 @@ export function addImages(imagesList) {
 
   setUpImageClickEvents();
   document.querySelector("#mix_images").style.display = "block";
+  document.querySelector("#add_images").style.display = "none";
 }
 
 export function createImageElement(img) {
